@@ -74,6 +74,6 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 5. composer update
 6. php artisan key:generate
 7. php artisan migrate
-8. php artisan db:seed -class=WalletSeeder
-9. php artisan db:seed -class=PulsaSeeder
+8. php artisan db:seed --class=WalletSeeder
+9. php artisan db:seed --class=PulsaSeeder
 10. php artisan serve (untuk jalankan server buka localhost:8080 di browser)
