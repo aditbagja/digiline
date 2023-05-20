@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\transaksi;
+use App\Models\transaksiDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -20,8 +24,14 @@ class HomeController extends Controller
     }
 
     function dashboard(){
-       // $data = User::get();
-        return view("home/dashboard");
+        // $transaksi = 
+        //  $query = DB::table('transaksi')->orderBy('id');
+        //  $transaksis = $query->reorder('id', 'asc')->get();
+        // $transaksis = DB::table('transaksi')->oldest()->get();
+        $transaksis = transaksi::get();
+        $transaksi_detail = transaksiDetail::get();
+ 
+        return view("home/dashboard",compact('transaksis','transaksi_detail'));
     }
 
     function kirim(){

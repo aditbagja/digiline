@@ -3,55 +3,34 @@
 <div class="main-panel">
     <div class="content-wrapper">
       <h2>Dashboard<h2><hr>
+      @include('komponen.pesan')
       <div class="row">
         <div class="col-md-6 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Riwayat Transaksi</h4>
+              
+              @foreach ($transaksi_detail->take(5) as $transaksi_detail)
+              @if(auth()->user()->id == @$transaksi_detail->transaksi->user_id && @$transaksi_detail->transaksi->status == "1")
               <div class="list align-items-center border-bottom py-2">
                 <div class="wrapper w-100">
-                  <p class="mb-2 font-weight-medium">Kirim Saldo</p>
+                  <p class="mb-2 font-weight-medium">{{ $transaksi_detail->jenis }}</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center">
                       <i class="mdi mdi-calendar text-muted me-1"></i>
-                      <p class="mb-0 text-small text-muted">2 April 2023</p>
+                      <?php 
+                      $timestamp = (strtotime($transaksi_detail->tanggal));
+                      $date = date('d-m-Y', $timestamp);
+                      $time = date('H:i:s', $timestamp);
+                      ?>
+                      <p class="mb-0 text-small text-muted">{{ $date }} - {{ $time }}</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="list align-items-center border-bottom py-2">
-                <div class="wrapper w-100">
-                  <p class="mb-2 font-weight-medium">Kirim Saldo</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
-                      <i class="mdi mdi-calendar text-muted me-1"></i>
-                      <p class="mb-0 text-small text-muted">4 April 2023</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list align-items-center border-bottom py-2">
-                <div class="wrapper w-100">
-                  <p class="mb-2 font-weight-medium">Topup Saldo</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
-                      <i class="mdi mdi-calendar text-muted me-1"></i>
-                      <p class="mb-0 text-small text-muted">5 April 2023</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list align-items-center border-bottom py-2">
-                <div class="wrapper w-100">
-                  <p class="mb-2 font-weight-medium">Kirim Saldo</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex align-items-center">
-                      <i class="mdi mdi-calendar text-muted me-1"></i>
-                      <p class="mb-0 text-small text-muted">7 April 2023</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+             
+              @endif
+              @endforeach
               <div class="list align-items-center pt-3">
                 <div class="wrapper w-100">
                   <p class="mb-0">

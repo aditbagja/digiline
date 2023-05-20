@@ -32,33 +32,26 @@
       }
       </style>
   {{-- Accordion ends --}}
-  {{-- Currency --}}
-  <style>
-    .currSign:before {
-        content: 'Rp.';
-    }
-  </style>
-  {{-- Currency ends --}}
             
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>DigiLine</title>
-  <link rel="shortcut icon" href="/images/favicon.png">
+  <link rel="shortcut icon" href="{{ URL::asset('/images/favicon.png')}}">
   <!-- plugins:css -->
-  <link rel="stylesheet" href="vendors/feather/feather.css">
-  <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="vendors/typicons/typicons.css">
-  <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
-  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="{{ URL::asset('vendors/feather/feather.css')}}">
+  <link rel="stylesheet" href="{{ URL::asset('vendors/mdi/css/materialdesignicons.min.css')}}">
+  <link rel="stylesheet" href="{{ URL::asset('vendors/ti-icons/css/themify-icons.css')}}">
+  <link rel="stylesheet" href="{{ URL::asset('vendors/typicons/typicons.css')}}">
+  <link rel="stylesheet" href="{{ URL::asset('vendors/simple-line-icons/css/simple-line-icons.css')}}">
+  <link rel="stylesheet" href="{{ URL::asset('vendors/css/vendor.bundle.base.css')}}">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="js/select.dataTables.min.css">
+  <link rel="stylesheet" href="{{ URL::asset('vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
+  <link rel="stylesheet" href="{{ URL::asset('js/select.dataTables.min.css')}}">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+  <link rel="stylesheet" href="{{ URL::asset('css/vertical-layout-light/style.css')}}">
   <!-- endinject -->
   
   
@@ -75,10 +68,10 @@
         </div>
         <div>
           <a class="navbar-brand brand-logo" href="/dashboard">
-            <img src="images/logo.svg" alt="logo" />
+            <img src="{{ URL::asset('images/logo.svg') }}" alt="logo" />
           </a>
           <a class="navbar-brand brand-logo-mini" href="/dashboard">
-            <img src="images/logo-mini.svg" alt="logo" />
+            <img src="{{ URL::asset('images/logo-mini.svg') }}" alt="logo" />
           </a>
         </div>
       </div>
@@ -86,7 +79,7 @@
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
             <h1 class="welcome-text">Welcome, <span class="text-black fw-bold">{{Auth::user()->name}} !</span></h1>
-            <h3 class="welcome-sub-text">Saldo kamu, <span class="currency">{{Auth::user()->saldo}}</span></h3>           
+            <h3 class="welcome-sub-text">Saldo kamu, Rp. {{number_format(Auth::user()->saldo)}}</h3>           
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
@@ -103,7 +96,7 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
-                  <img src="images/faces/face22.jpg" alt="image" class="img-sm profile-pic">
+                  <img src="{{ URL::asset('images/faces/face22.jpg')}}" alt="image" class="img-sm profile-pic">
                 </div>
                 <div class="preview-item-content flex-grow py-2">
                   <p class="preview-subject ellipsis font-weight-medium text-dark">Rezaldy</p>
@@ -112,7 +105,7 @@
               </a>
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
-                  <img src="images/faces/face8.jpg" alt="image" class="img-sm profile-pic">
+                  <img src="{{ URL::asset('images/faces/face8.jpg')}}" alt="image" class="img-sm profile-pic">
                 </div>
                 <div class="preview-item-content flex-grow py-2">
                   <p class="preview-subject ellipsis font-weight-medium text-dark">Kirim Saldo</p>
@@ -121,7 +114,7 @@
               </a>
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
-                  <img src="images/check.png" alt="image" class="img-sm profile-pic">
+                  <img src="{{ URL::asset('images/check.png')}}" alt="image" class="img-sm profile-pic">
                 </div>
                 <div class="preview-item-content flex-grow py-2">
                   <p class="preview-subject ellipsis font-weight-medium text-dark">Profile Updated</p>
@@ -130,21 +123,19 @@
               </a>
             </div>
           </li>
+
+          {{-- Dropdown --}}
           <li class="nav-item dropdown d-none d-lg-block user-dropdown">
-            <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-              <img class="img-xs rounded-circle" src="images/faces/face8.jpg" alt="Profile image"> </a>
+            <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i class="icon-user"></i></a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
               <div class="dropdown-header text-center">
-                <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
                 <p class="mb-1 mt-3 font-weight-semibold">{{Auth::user()->name}}</p>
                 <p class="fw-light text-muted mb-0">{{Auth::user()->no_telp}}</p>
               </div>
               
-              <a class="dropdown-item" href='/profile'><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> Profile</a>
+              <a class="dropdown-item" href='{{ route('profile.index') }}'><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> Profile</a>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> Bantuan</a>
               <a class="dropdown-item" href="/auth/logout"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Logout</a>
-              
-              
             </div>
           </li>
         </ul>
@@ -160,33 +151,49 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
+          <li class="nav-item nav-category">Fitur Utama</li>
           <li class="nav-item">
             <a class="nav-link" href="/dashboard">
               <i class="mdi mdi-grid-large menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {{ (request()->is('kirim/*')) ? 'active' : '' }}">
             <a class="nav-link" href="/kirim">
                 <i class="menu-icon mdi mdi-cash-multiple"></i>
                 <span class="menu-title">Kirim Saldo</span>
             </a>
-          </li><li class="nav-item">
+          </li><li class="nav-item {{ (request()->is('pulsa/*')) ? 'active' : '' }}">
             <a class="nav-link" href="/pulsa">
               <i class="menu-icon mdi mdi-cellphone"></i>
               <span class="menu-title">Beli Pulsa</span>
             </a>
-          </li><li class="nav-item">
+          </li><li class="nav-item {{ (request()->is('topup/*')) ? 'active' : '' }}">
             <a class="nav-link" href="/topup">
               <i class="menu-icon mdi mdi mdi-plus-circle-outline"></i>
               <span class="menu-title">Topup Saldo</span>
             </a>
-          </li><li class="nav-item">
+          </li><li class="nav-item {{ (request()->is('riwayat/*')) ? 'active' : '' }}">
             <a class="nav-link" href="/riwayat">
               <i class="menu-icon mdi mdi-history"></i>
               <span class="menu-title">Riwayat Transaksi</span>
             </a>
           </li>
+          @if(auth()->user()->is_admin == "1")
+          <li class="nav-item nav-category">Admin Area</li>
+          <li class="nav-item {{ (request()->is('user/*')) ? 'active' : '' }}">
+            <a class="nav-link" href="/user">
+              <i class="menu-icon mdi mdi-account-circle-outline"></i>
+              <span class="menu-title">User List</span>
+            </a>
+          </li>
+          <li class="nav-item {{ (request()->is('wallet/*')) ? 'active' : '' }}">
+            <a class="nav-link" href="/wallet">
+              <i class="menu-icon mdi mdi-cash-multiple"></i>
+              <span class="menu-title">Wallet List</span>
+            </a>
+          </li>
+          @endif
         </ul>
       </nav>
       @yield('konten')
@@ -194,34 +201,32 @@
     <!-- page-body-wrapper ends -->
     <!-- partial:partials/_footer.html -->
     <footer class="footer">
-      <div class="d-sm-flex justify-content-center justify-content-sm-between">
         <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2023. All rights reserved.</span>
-      </div>
     </footer>
     <!-- partial -->
   </div>
   <!-- container-scroller -->
 
   <!-- plugins:js -->
-  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script src="{{ URL::asset('vendors/js/vendor.bundle.base.js') }}"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="vendors/chart.js/Chart.min.js"></script>
-  <script src="vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-  <script src="vendors/progressbar.js/progressbar.min.js"></script>
+  <script src="{{ URL::asset('vendors/chart.js/Chart.min.js') }}"></script>
+  <script src="{{ URL::asset('vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+  <script src="{{ URL::asset('vendors/progressbar.js/progressbar.min.js') }}"></script>
 
   <!-- End plugin js for this page -->
   <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/hoverable-collapse.js"></script>
-  <script src="js/template.js"></script>
-  <script src="js/settings.js"></script>
-  <script src="js/todolist.js"></script>
+  <script src="{{ URL::asset('js/off-canvas.js') }}"></script>
+  <script src="{{ URL::asset('js/hoverable-collapse.js') }}"></script>
+  <script src="{{ URL::asset('js/template.js') }}"></script>
+  <script src="{{ URL::asset('js/settings.js') }}"></script>
+  <script src="{{ URL::asset('js/todolist.js') }}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="js/jquery.cookie.js" type="text/javascript"></script>
-  <script src="js/dashboard.js"></script>
-  <script src="js/Chart.roundedBarCharts.js"></script>
+  <script src="{{ URL::asset('js/jquery.cookie.js" type="text/javascript') }}"></script>
+  <script src="{{ URL::asset('js/dashboard.js') }}"></script>
+  <script src="{{ URL::asset('js/Chart.roundedBarCharts.js') }}"></script>
  
   <!-- End custom js for this page-->
   {{-- accordion js --}}
@@ -242,7 +247,7 @@
     }
   </script>
   {{-- currency js --}}
-  <script>
+  {{-- <script>
     let x = document.querySelectorAll(".currency");
     for (let i = 0, len = x.length; i < len; i++) {
         let num = Number(x[i].innerHTML)
@@ -250,8 +255,7 @@
         x[i].innerHTML = num;
         x[i].classList.add("currSign");
     }
-  </script>
+  </script> --}}
 </body>
 
 </html>
-

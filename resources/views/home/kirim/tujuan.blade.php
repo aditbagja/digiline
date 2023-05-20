@@ -7,13 +7,18 @@
         <div class="col-lg-12 grid-margin"> 
           <div class="card">
             <div class="card-body mb-3">
-                <h2>Kirim Saldo (nama wallet)<h2>
+                <h2>Kirim Saldo {{$wallet->name}}<h2>
                 <h4><small class="text-muted">Masukan Nomor Tujuan Kamu</small></h4><hr>
-                <div class="form-group">
+                @include('komponen.pesan')
+                <div class="form-group col-4">
                     <label for="no_tujuan">Nomor Tujuan</label>
-                    <input type="number" class="form-control" id="no_tujuan" placeholder="Nomor Tujuan">
-                </div>
-                <a href="/jumlahtrf" type="button" class="btn btn-primary me-2">Lanjutkan</a>
+                    <form action="{{ '/kirim'.'/'.$wallet->id }}" method="post">
+                      @csrf
+                      <input type="number" class="form-control" name="no_tujuan" id="no_tujuan" placeholder="Nomor Tujuan">
+                      </div>
+                      <button type="submit" class="btn btn-primary me-2">Lanjutkan</button>
+                    </form>
+                <a href="/kirim" class="btn btn-danger">Batal</a>
             </div>
             </div>
           </div>

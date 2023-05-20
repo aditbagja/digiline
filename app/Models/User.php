@@ -26,11 +26,14 @@ class User extends Authenticatable
         'jenis_kelamin',
         'tanggal_lahir',
         'password',
-        'avatar'
+        'avatar',
+        'saldo',
+        'is_admin'
     ];
     protected $attributes = [
         'saldo' => false,
    ];
+   protected $table = "users";
    protected $primaryKey = 'id';
     /**
      * The attributes that should be hidden for serialization.
@@ -51,5 +54,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
+    public function transaksi(){
+        return $this->hasMany('App\Models\transaksi','user_id','id');
+    }
 }

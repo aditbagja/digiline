@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fiturs', function (Blueprint $table) {
+        Schema::create('wallet', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_fitur');
+            $table->string('logo')->nullable();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fiturs');
+        Schema::dropIfExists('wallet');
     }
 };

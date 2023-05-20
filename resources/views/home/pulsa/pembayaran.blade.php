@@ -9,6 +9,9 @@
             <div class="card-body mb-3">
                 <h2>Konfirmasi Pembayaran<h2>
                 <h4><small class="text-muted">Rincian Tagihan</small></h4><hr>
+                @include('komponen/pesan')
+                <form action="{{ url('pulsa/bayar') }}/{{ $transaksi->id }}" method="post">
+                  @csrf
                 <div class="row mb-3">
                     <div class="col-md-6">
                       <p>Jenis Pulsa</p>
@@ -16,21 +19,34 @@
                       <p>Total Harga</p>
                     </div>
                     <div class="col-md-6">
-                      <p style="text-align: right">Pulsa TELKOMSEL 5000</p>
-                      <p style="text-align: right">081321123321</p>
-                      <p style="text-align: right">Rp. 5.500</p>
+                      <p style="text-align: right">{{ $transaksi->keterangan }}</p>
+                      <p style="text-align: right">{{ $transaksi->no_tujuan }}</p>
+                      <p style="text-align: right">Rp. {{ number_format($transaksi->jumlah_harga) }}</p>
                     </div>
-                    <div class="container">
-                      <select>
-                        <option value="1">Saldo DigiLine</option>
-                        <option value="2">DANA</option>
-                        <option value="3">Gopay</option>
-                        <option value="4">OVO</option>
-                        <option value="5">ShopeePay</option>
+                      <p>Mau bayar pake apa ?</p>
+                      <div class="col-4">
+                      <select class="form-select mb-3" name="wallet" id="wallet">
+                        @foreach ($wallets as $wallet)
+                        <option value="{{ $wallet->name }}">{{ $wallet->name }}</option>                        
+                        @endforeach
                       </select>
                     </div>
                 </div>
-                <a href="/rincian" type="button" class="btn btn-primary me-2">Lanjut Bayar</a>
+                <div class="row">
+                  <div class="col-2">
+                    <button type="submit" class="btn btn-primary mr-3">Lanjut Bayar</button>
+                  </div></form>
+                  <div class="col">
+                    <form onsubmit="return confirm('Apakah kamu yakin mau batal beli pulsa ?')" class='d-inline' action="{{$transaksi->id}}" method="post">
+                      @csrf
+                      @method('DELETE')
+                      <button class="btn btn-danger" type="submit">Batal</button>
+                    </form>
+                  </div>
+                </div>
+                  
+                
+                
             </div>
             </div>
           </div>

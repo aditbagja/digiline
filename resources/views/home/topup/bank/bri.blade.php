@@ -22,9 +22,9 @@
                 </div>
                 <div class="mb-3" style="text-align: center">
                     <h2>Nomor Virtual Akun BANK BRI</h2>
-                    <h1 class="text-danger">9999 0855 5512 3321</h1>
+                    <h1 class="text-danger">9999 {{ Auth::user()->no_telp }}</h1>
                     <button type="button" class="btn btn-primary btn-fw mb-2">SALIN KODE</button>
-                    <h4>Nama akun : RUSDI</h4>
+                    <h4>Nama akun : {{ Auth::user()->name }}</h4>
                     <h4>Ikuti instruksi pembayaran di bawah ini :</h4>
                 </div>
                 <div class="mb-3">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\RedirectResponse;
@@ -17,7 +18,7 @@ class AuthController extends Controller
 
     function login(Request $request){
         Session::flash('email', $request->email);
-        $remember = $request->get('remember');
+        //$remember = $request->get('remember');
         $request->validate([
             'email' => 'required',
             'password' => 'required'
@@ -31,13 +32,18 @@ class AuthController extends Controller
             'password'=>$request->password
         ];
 
-        if(Auth::attempt($infologin, $remember)){
+        if(Auth::attempt($infologin)){
             //otentikasi sukses
+            if($request->has('remember')){
+                Cookie::queue('useremail',$request->email,1440);
+                Cookie::queue('userpassword',$request->password,1440);
+            }
             return redirect('/dashboard');
         } else{
             //otentikasi gagal
             return redirect('login')->withErrors('Email atau password yang anda masukkan salah');
         }
+        
 
     }
 
@@ -59,8 +65,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'no_telp' => 'required|min:12|unique:users',
             'password' => 'required|min:6',
-            'saldo' => 'default:0',
-            // 'avatar' => 'required'
+            'saldo' => 'default:0'
         ],[
             'name.required' => '* Nama harus diisi',
             'email.required' => '* Email harus diisi',
@@ -70,8 +75,7 @@ class AuthController extends Controller
             'no_telp.min' => '* Minimum No. Telepon yang dibolehkan adalah 12 karakter',
             'no_telp.unique' => '* No. Telepon sudah digunakan, silahkan masukan No. Telepon yang lain',
             'password.required' => '* Password harus diisi',
-            'password.min' => '* Minimum password yang dibolehkan adalah 6 karakter',
-            // 'avatar.required' => 'Avatar harus diisi'
+            'password.min' => '* Minimum password yang dibolehkan adalah 6 karakter'
         ]);
 
         $data = [
@@ -95,4 +99,6 @@ class AuthController extends Controller
             return redirect('login')->withErrors('Email atau password yang anda masukkan salah');
         }
     }
+
+    
 }
