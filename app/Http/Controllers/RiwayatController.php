@@ -9,11 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class RiwayatController extends Controller
 {
-    function index(){
-        // $data = Auth::user()->transaksi::get();
-        // $transaksi = Auth::user();
-        $transaksis = transaksi::get();
+    function index(Request $request){
+        
         $transaksi_detail = transaksiDetail::get();
+        $transaksis = transaksi::get();
         return view("home/riwayat/index",compact('transaksis','transaksi_detail'));
     }
 }

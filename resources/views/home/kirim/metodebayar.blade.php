@@ -13,9 +13,11 @@
                 @csrf
                 @method('PUT')
                 @foreach ($wallets as $wallet)
+                @unless ($wallet->name == $transaksi->wallet_tujuan)
                 <div class="mb-3 d-grid">
                   <button name="wallet" value="{{ $wallet->name }}" class="btn btn-outline-dark btn-fw" style="text-align: left"><img src="{{ url('wallet_logo'.'/'.$wallet->logo) }}" width="50" height="50"> {{$wallet->name}} </button> 
                 </div>
+                @endunless
                 @endforeach
                 </form>
             </div>

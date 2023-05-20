@@ -42,6 +42,7 @@ class KirimController extends Controller
         $transaksi->tanggal = $tanggal;
         $transaksi->no_tujuan = $request->no_tujuan;
         $transaksi->wallet_tujuan = $wallet->name;
+        $transaksi->harga = 0;
         $transaksi->jumlah_harga = 0;
         $transaksi->status = 0;
         $transaksi->keterangan = $keterangan;

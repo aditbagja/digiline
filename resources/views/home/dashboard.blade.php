@@ -9,9 +9,7 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Riwayat Transaksi</h4>
-              
-              @foreach ($transaksi_detail->take(5) as $transaksi_detail)
-              @if(auth()->user()->id == @$transaksi_detail->transaksi->user_id && @$transaksi_detail->transaksi->status == "1")
+              @foreach ($transaksi_details as $transaksi_detail)
               <div class="list align-items-center border-bottom py-2">
                 <div class="wrapper w-100">
                   <p class="mb-2 font-weight-medium">{{ $transaksi_detail->jenis }}</p>
@@ -28,8 +26,6 @@
                   </div>
                 </div>
               </div>
-             
-              @endif
               @endforeach
               <div class="list align-items-center pt-3">
                 <div class="wrapper w-100">

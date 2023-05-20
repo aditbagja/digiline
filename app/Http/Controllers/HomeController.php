@@ -24,14 +24,12 @@ class HomeController extends Controller
     }
 
     function dashboard(){
-        // $transaksi = 
-        //  $query = DB::table('transaksi')->orderBy('id');
-        //  $transaksis = $query->reorder('id', 'asc')->get();
-        // $transaksis = DB::table('transaksi')->oldest()->get();
-        $transaksis = transaksi::get();
-        $transaksi_detail = transaksiDetail::get();
+        $userId = Auth::id();
+        $transaksi_details = TransaksiDetail::whereHas('transaksi', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })->limit(5)->get();;
  
-        return view("home/dashboard",compact('transaksis','transaksi_detail'));
+        return view("home/dashboard",compact('transaksi_details'));
     }
 
     function kirim(){

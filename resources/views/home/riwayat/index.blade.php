@@ -44,8 +44,11 @@
                       @foreach ($transaksis as $transaksi)
                       @if(auth()->user()->id == $transaksi->user_id && $transaksi->status == "0")
                       <div class="container d-grid mb-3">
-                        <a @if($transaksi->jenis == "KIRIM SALDO") href="{{ ('/kirim/rinciantrf/').$transaksi->id }}" 
-                        @elseif($transaksi->jenis == "BELI PULSA") href="{{ ('/pulsa/bayar/').$transaksi->id }}" @endif type="button" class="btn btn-outline-primary btn-fw" style="text-align: left">
+                        <a 
+                        @if($transaksi->harga == "0" && $transaksi->jenis == "KIRIM SALDO") href="{{ ('/kirim/jumlah/').$transaksi->id }}"
+                        @elseif($transaksi->jenis == "KIRIM SALDO") href="{{ ('/kirim/rinciantrf/').$transaksi->id }}" 
+                        @elseif($transaksi->jenis == "BELI PULSA") href="{{ ('/pulsa/bayar/').$transaksi->id }}" 
+                        @endif type="button" class="btn btn-outline-primary btn-fw" style="text-align: left">
                         <div class="row">
                           <div class="col-sm-2">
                             <img src="@if($transaksi->jenis == "KIRIM SALDO") {{ url('/assets/img/images/cash-multiple.svg') }}
@@ -63,17 +66,6 @@
                     @endforeach
                     </div>
                   </div>
-                  
-            <div class="container">
-              <div class="row">
-                <div class="col" style="text-align: right">
-                  <button class="btn btn-outline-primary"><img src="/assets/img/images/sort.svg" width="20" height="20">Urutkan</button>
-                </div>
-                <div class="col">
-                  <button class="btn btn-outline-primary"><img src="/assets/img/images/filter-variant.svg" width="20" height="20">Filter</button>
-                </div>
-              </div>
-            </div>
             </div>
             </div>
           </div>
