@@ -15,7 +15,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        // $data = User::get();
         $data = User::orderBy('id','asc')->paginate(5);
         return view('home/user/index')->with('data',$data);
     }
@@ -34,13 +33,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         Session::flash('name', $request->name);
-        Session::flash('jenis_kelamin', $request->jenis_kelamin);
         Session::flash('email', $request->email);
         Session::flash('no_telp', $request->no_telp);
         Session::flash('tanggal_lahir', $request->tanggal_lahir);
 
         $request->validate([
-            'name'=>'required',
+            'name'=>'required|regex:/^[a-zA-Z\s]+$/',
             'jenis_kelamin'=>'required',
             'email'=>'required|email|unique:users',
             'no_telp'=>'required|numeric|min:12|unique:users',
@@ -50,6 +48,7 @@ class UserController extends Controller
             'saldo' => 'default:0'
         ],[
             'name.required' => 'Nama harus diisi',
+            'name.regex' => 'Nama tidak boleh mengandung angka dan simbol',
             'jenis_kelamin.required' => 'Silahkan pilih jenis kelamin',
             'email.required' => 'Email harus diisi',
             'tanggal_lahir.required' => 'Tanggal lahir harus diisi',
@@ -117,13 +116,14 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name'=>'required',
+            'name'=>'required|regex:/^[a-zA-Z\s]+$/',
             'jenis_kelamin'=>'required',
             'email'=>'required|email',
             'no_telp'=>'required|numeric|min:12',
             'tanggal_lahir'=>'required'
         ],[
             'name.required' => 'Nama harus diisi',
+            'name.regex' => 'Nama tidak boleh mengandung angka dan simbol',
             'jenis_kelamin.required' => 'Silahkan pilih jenis kelamin',
             'email.required' => 'Email harus diisi',
             'tanggal_lahir.required' => 'Tanggal lahir harus diisi',

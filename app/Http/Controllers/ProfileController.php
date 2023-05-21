@@ -22,12 +22,19 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
 {
     $request->validate([
-        'name'       => 'required|string|min:2|max:100',
+        'name'       => 'required|regex:/^[a-zA-Z\s]+$/',
         'jenis_kelamin'       => 'required|string',
         'tanggal_lahir'       => 'required|date',
-        'no_telp'       => 'required|string',
-        'email'      => 'required|email|unique:users,email, ' . $id . ',id',
-        
+        'no_telp'       => 'required|string|min:12',
+        'email'      => 'required|email|unique:users,email, ' . $id . ',id',  
+    ],[
+        'name.required' => 'Nama Harus diisi',
+        'name.regex' => 'Nama tidak boleh mengandung angka dan simbol',
+        'name.min' => 'Nama setidaknya harus minimal 2 karakter',
+        'email.required' => 'Email Harus diisi',
+        'no_telp.required' => 'Nomor Telepon Harus diisi',
+        'no_telp.min' => 'Nomor Telepon Harus diisi minimal 12 Karakter',
+        'email.unique' => 'Email sudah digunakan, silahkan masukkan email lain',
     ]);
 
     $user = User::find($id);
@@ -70,8 +77,14 @@ class ProfileController extends Controller
 
     public function changepassword(Request $request, $id){
         $request->validate([
-            'old_password' => 'nullable|string',
-            'password' => 'nullable|required_with:old_password|string|confirmed|min:6'
+            'old_password' => 'required|string',
+            'password' => 'required|required_with:old_password|string|confirmed|min:6',
+        ],[
+            'old_password.required' => 'Password Harus diisi',
+            'password.required' => 'Password Baru Harus diisi',
+            'password.required_with' => 'Password Harus sama dengan password yang lama',
+            'password.min' => 'Password Baru setidaknya harus terdiri minimal 6 karakter',
+            'password.confirmed' => 'Password Konfirmasi harus sama dengan Password Baru'
         ]);
 
         $user = User::find($id);
@@ -83,7 +96,7 @@ class ProfileController extends Controller
                 ]);
             } else {
                 return back()
-                    ->withErrors(['old_password' => __('Please enter the correct password')])
+                    ->withErrors(['old_password' => __('Password yang anda masukan salah!')])
                     ->withInput();
             }
         }

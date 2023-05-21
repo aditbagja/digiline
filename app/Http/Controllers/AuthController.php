@@ -12,13 +12,8 @@ use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 {
-    //  function index(){
-    //      return view("auth/login");
-    //  }
-
     function login(Request $request){
         Session::flash('email', $request->email);
-        //$remember = $request->get('remember');
         $request->validate([
             'email' => 'required',
             'password' => 'required'
@@ -43,10 +38,7 @@ class AuthController extends Controller
             //otentikasi gagal
             return redirect('login')->withErrors('Email atau password yang anda masukkan salah');
         }
-        
-
     }
-
 
     function logout(){
         Auth::logout();
@@ -60,22 +52,23 @@ class AuthController extends Controller
     function create(Request $request){
         Session::flash('name', $request->name);
         Session::flash('email', $request->email);
+        Session::flash('no_telp', $request->no_telp);
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|regex:/^[a-zA-Z\s]+$/',
             'email' => 'required|email|unique:users',
             'no_telp' => 'required|min:12|unique:users',
-            'password' => 'required|min:6',
-            'saldo' => 'default:0'
+            'password' => 'required|min:6'
         ],[
-            'name.required' => '* Nama harus diisi',
-            'email.required' => '* Email harus diisi',
-            'email.email' => '* Masukkan email yang valid',
-            'email.unique' => '* Email sudah digunakan, silahkan masukan email yang lain',
-            'no_telp.required' => '* No. Telepon harus diisi',
-            'no_telp.min' => '* Minimum No. Telepon yang dibolehkan adalah 12 karakter',
-            'no_telp.unique' => '* No. Telepon sudah digunakan, silahkan masukan No. Telepon yang lain',
-            'password.required' => '* Password harus diisi',
-            'password.min' => '* Minimum password yang dibolehkan adalah 6 karakter'
+            'name.required' => 'Nama harus diisi',
+            'name.regex' => 'Nama tidak boleh mengandung angka dan simbol',
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Masukkan email yang valid',
+            'email.unique' => 'Email sudah digunakan, silahkan masukan email yang lain',
+            'no_telp.required' => 'No. Telepon harus diisi',
+            'no_telp.min' => 'Minimum No. Telepon yang dibolehkan adalah 12 karakter',
+            'no_telp.unique' => 'No. Telepon sudah digunakan, silahkan masukan No. Telepon yang lain',
+            'password.required' => 'Password harus diisi',
+            'password.min' => 'Minimum password yang dibolehkan adalah 6 karakter'
         ]);
 
         $data = [
@@ -93,7 +86,7 @@ class AuthController extends Controller
 
         if(Auth::attempt($infologin)){
             //otentikasi sukses
-            return redirect('/dashboard')->with('success',Auth::user()->name.' Berhasil login');
+            return redirect('/dashboard');
         } else{
             //otentikasi gagal
             return redirect('login')->withErrors('Email atau password yang anda masukkan salah');

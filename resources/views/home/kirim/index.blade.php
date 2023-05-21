@@ -14,7 +14,6 @@
                   <a type="button" class="btn btn-outline-dark btn-fw" href="{{ url('/kirim/'.$wallet->id)}}" style="text-align: left"><img src="{{ url('wallet_logo'.'/'.$wallet->logo) }}" width="50" height="50"> {{$wallet->name}}</a>
                 </div>
                 @endforeach
-                  
             </div>
           </div>
         </div>

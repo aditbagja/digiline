@@ -9,6 +9,9 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Riwayat Transaksi</h4>
+              @if ($transaksi_details->isEmpty())
+                  <p class="text-muted">Kamu Belum Melakukan Transaksi Apapun, Ayo Mulai Transaksi Pertamamu!</p>
+              @else
               @foreach ($transaksi_details as $transaksi_detail)
               <div class="list align-items-center border-bottom py-2">
                 <div class="wrapper w-100">
@@ -27,10 +30,11 @@
                 </div>
               </div>
               @endforeach
+              @endif
               <div class="list align-items-center pt-3">
                 <div class="wrapper w-100">
                   <p class="mb-0">
-                    <a href="/riwayat" class="fw-bold text-primary">Show all <i class="mdi mdi-arrow-right ms-2"></i></a>
+                    <a href="/riwayat" class="fw-bold text-primary" style="text-decoration:none">Show all -></a>
                   </p>
                 </div>
               </div>
@@ -41,7 +45,9 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Activities</h4>
-              <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FJakarta&showTitle=0&showNav=0&showDate=1&showPrint=0&showTabs=1&showTz=1&showCalendars=0&hl=id&src=YWRpdGJhZ2phNDRAZ21haWwuY29t&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=Y2xhc3Nyb29tMTA3OTg5NDMwNzE5ODY4NjUxNDU5QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y2xhc3Nyb29tMTA4MDQxMzE4NTk2NzAzMzI3MzUyQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=ZW4uaW5kb25lc2lhbiNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=ZmFtaWx5MTEwNjEzNjk0ODUwNDQwNDg0NjBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=Y2xhc3Nyb29tMTEwOTcyNzg1NzkwMzA2OTM3MDk5QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y2xhc3Nyb29tMTAyNzY0OTQ1OTAzODE1MTU4Nzg3QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=dXBpLmVkdV9jbGFzc3Jvb21iMDEwM2QyN0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23039BE5&color=%2333B679&color=%23202124&color=%230047a8&color=%230B8043&color=%23795548&color=%23c26401&color=%23202124&color=%23007b83" style="border-width:0" width="465" height="400" frameborder="0" scrolling="no"></iframe>
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FJakarta&showTitle=0&showNav=0&showDate=1&showPrint=0&showTabs=1&showTz=1&showCalendars=0&hl=id&src=YWRpdGJhZ2phNDRAZ21haWwuY29t&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=Y2xhc3Nyb29tMTA3OTg5NDMwNzE5ODY4NjUxNDU5QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y2xhc3Nyb29tMTA4MDQxMzE4NTk2NzAzMzI3MzUyQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=ZW4uaW5kb25lc2lhbiNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=ZmFtaWx5MTEwNjEzNjk0ODUwNDQwNDg0NjBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=Y2xhc3Nyb29tMTEwOTcyNzg1NzkwMzA2OTM3MDk5QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y2xhc3Nyb29tMTAyNzY0OTQ1OTAzODE1MTU4Nzg3QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=dXBpLmVkdV9jbGFzc3Jvb21iMDEwM2QyN0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23039BE5&color=%2333B679&color=%23202124&color=%230047a8&color=%230B8043&color=%23795548&color=%23c26401&color=%23202124&color=%23007b83" style="border-width:0" width="465" height="400" frameborder="0" scrolling="no"></iframe>
+              </div>
             </div>
           </div>
         </div>

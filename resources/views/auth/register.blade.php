@@ -1,10 +1,10 @@
-<title>Register</title>
 @extends('komponen/header')
-
+<title>Register</title>
 @section('konten')
     <div class="w-50 center border rounded px-3 mt-3 py-3 mx-auto mb-3">
         <h1 style="text-align: center">Register</h1>
         <p style="text-align:center;">Silahkan isi form berikut untuk melanjutkan</p>
+        @include('komponen.pesan')
         <form action="/auth/create" method="POST">
             @csrf
             <div class="mb-3">
@@ -17,7 +17,7 @@
             </div>
             <div class="mb-3">
                 <label for="no_telp" class="from-label">No. Telepon</label>
-                <input type="number" name="no_telp" class="form-control">
+                <input type="number" value="{{ Session::get('no_telp') }}" name="no_telp" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="password" class="from-label">Password</label>
@@ -32,15 +32,6 @@
             <div class="mb-3 d-grid">
                 <button name="submit" type="submit" class="btn btn-primary">Daftar</button>
             </div>
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-                </div>
-            @endif
         </form>
     </div>
         

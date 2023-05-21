@@ -51,6 +51,7 @@
   <link rel="stylesheet" href="{{ URL::asset('js/select.dataTables.min.css')}}">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
+  <link rel="stylesheet" href="{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ URL::asset('css/vertical-layout-light/style.css')}}">
   <!-- endinject -->
   
@@ -150,7 +151,7 @@
       <!-- partial -->
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
+        <ul class="nav" style="position: fixed">
           <li class="nav-item nav-category">Fitur Utama</li>
           <li class="nav-item">
             <a class="nav-link" href="/dashboard">

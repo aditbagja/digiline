@@ -31,7 +31,7 @@
                       <div class="row">
                         <div class="form-group col-6">
                           <label for="name">Nama Lengkap</label>
-                          <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name">
+                          <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" autocomplete="name">
                           @error('name')
                             <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -66,7 +66,7 @@
 
                       <div class="form-group col-6">
                         <label for="email">Email</label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{  $user->email }}" required autocomplete="email">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{  $user->email }}" autocomplete="email">
                           @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -76,7 +76,7 @@
 
                       <div class="form-group col-6">
                         <label for="no_telp">No. Telepon</label>
-                        <input id="no_telp" type="number" class="form-control @error('email') is-invalid @enderror" name="no_telp" value="{{ $user->no_telp }}" required autocomplete="no_telp">
+                        <input id="no_telp" type="number" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ $user->no_telp }}" autocomplete="no_telp">
                         @error('no_telp')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

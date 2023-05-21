@@ -38,7 +38,7 @@ Route::post('/auth/create', [AuthController::class,'create'])->middleware('isTam
 //Fitur Kirim Saldo 
 Route::get('kirim',[KirimController::class,'index']);
 Route::get('kirim/{id}',[KirimController::class,'tujuan']);
-Route::post('kirim/{id}',[KirimController::class,'jumlahKirim']);
+Route::post('kirim/{id}',[KirimController::class,'tujuanKirim']);
 Route::get('kirim/jumlah/{id}',[KirimController::class,'jumlah']);
 Route::delete('kirim/jumlah/{id}',[KirimController::class,'batal']);
 Route::put('kirim/jumlah/{id}',[KirimController::class,'jumlahTransfer']);

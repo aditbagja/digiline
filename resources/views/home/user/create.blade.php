@@ -1,4 +1,5 @@
 @extends('komponen/aplikasi')
+<title>Tambah User Baru</title>
 @section('konten')
 <div class="main-panel">        
     <div class="content-wrapper">

@@ -1,6 +1,5 @@
-<title>Login</title>
 @extends('komponen/header')
-
+<title>Login</title>
 @section('konten')
     <div class="w-50 center border rounded px-3 py-3 mx-auto mb-3 mt-3">
     @include('komponen/pesan')

@@ -11,8 +11,8 @@ class RiwayatController extends Controller
 {
     function index(Request $request){
         
-        $transaksi_detail = transaksiDetail::get();
-        $transaksis = transaksi::get();
+        $transaksi_detail = transaksiDetail::orderBy('tanggal','desc')->get();
+        $transaksis = transaksi::orderBy('tanggal','desc')->get();
         return view("home/riwayat/index",compact('transaksis','transaksi_detail'));
     }
 }

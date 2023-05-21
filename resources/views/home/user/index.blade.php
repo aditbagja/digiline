@@ -1,4 +1,5 @@
 @extends('komponen/aplikasi')
+<title>User List</title>
 @section('konten')
 <div class="main-panel">        
     <div class="content-wrapper">
@@ -33,8 +34,8 @@
                             @else
                                 <img src="{{ asset('images/profile.png') }}" class="mx-auto d-block">
                             @endif</td>
-                            <td><p>{{ $item->name }}</p></td>
-                            <td><p>{{ $item->email}}</p></td>
+                            <td><p>{{ $item->name }} &ensp; @if($item->is_admin == "1") <span class="badge badge-danger">Admin</span> @endif</p></td>
+                            <td><p>{{ $item->email }}</p></td>
                             <td><p>{{ $item->no_telp }}</p></td>
                             <td><p>{{ $item->jenis_kelamin }}</p></td>
                             <td><p>{{ $item->tanggal_lahir }}</p></td>

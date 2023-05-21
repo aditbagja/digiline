@@ -1,5 +1,5 @@
 @extends('komponen/aplikasi')
-<title>Berhasil</title>
+<title>Rincian Transaksi</title>
 @section('konten')
 <div class="main-panel">        
     <div class="content-wrapper">

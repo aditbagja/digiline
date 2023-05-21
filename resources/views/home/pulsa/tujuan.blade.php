@@ -1,5 +1,5 @@
 @extends('komponen/aplikasi')
-<title>Kirim Saldo</title>
+<title>Beli Pulsa</title>
 @section('konten')
 <div class="main-panel">        
     <div class="content-wrapper">
