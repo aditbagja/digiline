@@ -172,4 +172,12 @@ class UserController extends Controller
         User::where('id',$id)->delete();
         return redirect('/user')->with('success','Data User berhasil dihapus');
     }
+
+    public function toggleAdmin($id)
+    {
+        $user = User::findOrFail($id);
+        $user->update(['is_admin' => ! $user->is_admin]);
+
+    return redirect('user')->with('success', 'Berhasil mengubah status User');
+    }
 }

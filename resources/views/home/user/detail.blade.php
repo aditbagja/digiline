@@ -18,15 +18,49 @@
                             <img src="{{ url('images/profile.png') }}" class="img-thumbnail mx-auto d-block">
                         @endif
                     </div>
-                      
-                    <div class="col-6">
-                        <h4>ID User : <span class="text-muted">{{ $data->id }}</span> </h4> 
-                        <h4>Nama Lengkap : <span class="text-muted">{{ $data->name }}</span> </h4> 
-                        <h4>Jenis Kelamin : <span class="text-muted">@if($data->jenis_kelamin == 'L')Laki - Laki @else Perempuan @endif</span> </h4>
-                        <h4>Tanggal Lahir : <span class="text-muted">{{ $data->tanggal_lahir }}</span> </h4>
-                        <h4>Email : <span class="text-muted">{{  $data->email }}</span> </h4>
-                        <h4>No Telepon : <span class="text-muted">{{ $data->no_telp }}</span> </h4>
-                        <h4>Saldo : <span class="currency text-muted">{{ $data->saldo }}</span> </h4>
+                    <div class="col-1">
+                      <table class="table table-borderless">
+                        <tr>
+                          <td><h5>ID User</h5></td>
+                          <td><h5>:</h5></td>
+                          <td><h5>{{ $data->id }}</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>Nama Lengkap</h5></td>
+                          <td><h5>:</h5></td>
+                          <td><h5>{{ $data->name }}</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>Jenis Kelamin</h5></td>
+                          <td><h5>:</h5></td>
+                          <td><h5>@if($data->jenis_kelamin == 'L')Laki - Laki @else Perempuan @endif</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>Tanggal Lahir</h5></td>
+                          <td><h5>:</h5></td>
+                          <td><h5>{{ $data->tanggal_lahir }}</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>Email</h5></td>
+                          <td><h5>:</h5></td>
+                          <td><h5>{{ $data->email }}</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>No. Telepon</h5></td>
+                          <td><h5>:</h5></td>
+                          <td><h5>{{  $data->no_telp }}</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>Saldo</h5></td>
+                          <td><h5>:</h5></td>
+                          <td><h5>Rp. {{ number_format($data->saldo) }}</h5></td>
+                        </tr>
+                        <tr>
+                          <td><h5>Status</h5></td>
+                          <td><h5>:</h5></td>
+                          <td><h5>@if($data->is_admin == "1")Admin @else User @endif</h5></td>
+                        </tr>
+                      </table>
                     </div>
                 </div>
             </div>         

@@ -6,7 +6,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-4">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="">
+            <img src="/images/about.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
             <h3>About Us</h3>

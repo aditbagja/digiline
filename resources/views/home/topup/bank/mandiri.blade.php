@@ -13,7 +13,7 @@
                     <button type="button" class="btn btn-outline-primary btn-fw" style="text-align: left">
                     <div class="row">
                       <div class="col align-self-center">
-                        <img src="/assets/img/images/Mandiri.png" width="70" height="50"> BANK Mandiri
+                        <img src="/images/Mandiri.png" width="70" height="50"> BANK Mandiri
                       </div>
                       <div class="col align-self-center" style="text-align: right">
                         <a href="/topup" style="text-decoration: none;">Ganti &#10093;</a>

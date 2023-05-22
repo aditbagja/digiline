@@ -81,4 +81,5 @@ Route::patch('/password/{id}', [ProfileController::class, 'changepassword'])->na
 
 // Fitur CRUD Admin Area
 Route::resource('user', UserController::class);
+Route::post('user/{id}', [UserController::class,'toggleAdmin'])->name('toggleAdmin');
 Route::resource('wallet', WalletController::class);

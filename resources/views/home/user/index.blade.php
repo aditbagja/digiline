@@ -39,7 +39,7 @@
                             <td><p>{{ $item->no_telp }}</p></td>
                             <td><p>{{ $item->jenis_kelamin }}</p></td>
                             <td><p>{{ $item->tanggal_lahir }}</p></td>
-                            <td><p>{{ $item->saldo }}</p></td>
+                            <td><p>Rp. {{ number_format($item->saldo) }}</p></td>
                             <td><a href="{{ url('/user/'.$item->id)}}" class="btn btn-info btn-sm">Detail</a>
                                 <a href="{{ url('/user/'.$item->id.'/edit')}}" class="btn btn-warning btn-sm">Edit</a>
                                 <form onsubmit="return confirm('Apakah anda yakin mau hapus data ?')" class='d-inline' action="{{'/user/'.$item->id}}" method="post">
@@ -47,6 +47,17 @@
                                   @method('DELETE')
                                   <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                                 </form>
+                                @if($item->is_admin == 1) 
+                                <form action="{{ route('toggleAdmin', $item->id) }}" method="POST" class='d-inline'>
+                                    @csrf                        
+                                    <button type="submit" class="btn btn-outline-dark btn-sm" value="0">Jadikan User</button>
+                                </form>                    
+                                 @else
+                                <form action="{{ route('toggleAdmin', $item->id) }}" method="POST" class='d-inline'>
+                                    @csrf                          
+                                    <button type="submit" class="btn btn-outline-danger btn-sm" value="1">Jadikan Admin</button>
+                                </form>                                                 
+                                @endif 
                             </td>
                         </tr>
                     @endforeach

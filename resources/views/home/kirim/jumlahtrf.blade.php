@@ -28,14 +28,13 @@
                     <button type="submit" class="btn btn-primary">Lanjutkan</button>
                   </div></form>
                   <div class="col">
-                    <form onsubmit="return confirm('Apakah kamu yakin mau batal kirim saldo ?')" class='d-inline' action="{{$transaksi->id}}" method="post">
+                    <form onsubmit="return confirm('Apakah kamu yakin mau batal kirim saldo ?')" action="{{$transaksi->id}}" method="post">
                       @csrf
                       @method('DELETE')
                       <button class="btn btn-danger" type="submit">Batal</button>
                     </form>
                   </div>
                 </div>
-
             </div>
             </div>
           </div>

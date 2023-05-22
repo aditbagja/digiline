@@ -55,15 +55,14 @@
   <link rel="stylesheet" href="{{ URL::asset('css/vertical-layout-light/style.css')}}">
   <!-- endinject -->
   
-  
 </head>
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+    <nav class="navbar navbar-expand-lg fixed-top align-items-top flex-row" id="navbar">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
         <div class="me-3">
-          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
+          <button class="navbar-toggler navbar-toggler align-self-center " type="button" data-bs-toggle="minimize">
             <span class="icon-menu"></span>
           </button>
         </div>
@@ -83,49 +82,7 @@
             <h3 class="welcome-sub-text">Saldo kamu, Rp. {{number_format(Auth::user()->saldo)}}</h3>           
           </li>
         </ul>
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item dropdown"> 
-            <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="icon-bell"></i>
-              <span class="count"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="countDropdown">
-              <a class="dropdown-item py-3">
-                <p class="mb-0 font-weight-medium float-left">You have 7 unread mails </p>
-                <span class="badge badge-pill badge-primary float-right">View all</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <img src="{{ URL::asset('images/faces/face22.jpg')}}" alt="image" class="img-sm profile-pic">
-                </div>
-                <div class="preview-item-content flex-grow py-2">
-                  <p class="preview-subject ellipsis font-weight-medium text-dark">Rezaldy</p>
-                  <p class="fw-light small-text mb-0">Anda Menerima saldo DANA dari Rezaldy sebesar Rp. 100.000</p>
-                </div>
-              </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <img src="{{ URL::asset('images/faces/face8.jpg')}}" alt="image" class="img-sm profile-pic">
-                </div>
-                <div class="preview-item-content flex-grow py-2">
-                  <p class="preview-subject ellipsis font-weight-medium text-dark">Kirim Saldo</p>
-                  <p class="fw-light small-text mb-0">Kirim Saldo Gopay ke No Rek. 089321123321 BERHASIL</p>
-                </div>
-              </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <img src="{{ URL::asset('images/check.png')}}" alt="image" class="img-sm profile-pic">
-                </div>
-                <div class="preview-item-content flex-grow py-2">
-                  <p class="preview-subject ellipsis font-weight-medium text-dark">Profile Updated</p>
-                  <p class="fw-light small-text mb-0">Profile Anda Berhasil diperbarui</p>
-                </div>
-              </a>
-            </div>
-          </li>
-
-          {{-- Dropdown --}}
+        <ul class="navbar-nav ms-auto nav-item dropdown">
           <li class="nav-item dropdown d-none d-lg-block user-dropdown">
             <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i class="icon-user"></i></a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -247,16 +204,6 @@
       });
     }
   </script>
-  {{-- currency js --}}
-  {{-- <script>
-    let x = document.querySelectorAll(".currency");
-    for (let i = 0, len = x.length; i < len; i++) {
-        let num = Number(x[i].innerHTML)
-            .toLocaleString('id');
-        x[i].innerHTML = num;
-        x[i].classList.add("currSign");
-    }
-  </script> --}}
 </body>
 
 </html>

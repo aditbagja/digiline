@@ -62,9 +62,9 @@ class PulsaController extends Controller
         $pulsa = pulsa::where('id',$id)->first();
         $transaksi = transaksi::where('id',$id)->first();
         $user = Auth::user();
-        
+        // kondisi jika pembayaran dilakukan dengan saldo DigiLine jika saldo tidak cukup
         if($request->wallet == "DigiLine" && $transaksi->jumlah_harga > $user->saldo ){
-            return redirect('pulsa/bayar/'.$transaksi->id)->withErrors('Saldo kamu tidak mencukupi');
+            return redirect('pulsa/bayar/'.$transaksi->id)->withErrors('Saldo kamu tidak cukup!');
         }
         else{
             $transaksi_detail = new transaksiDetail;
@@ -80,7 +80,7 @@ class PulsaController extends Controller
             $transaksi->status = 1;
             $transaksi->update();
         }
-        
+        // kondisi jika pembayaran dilakukan dengan saldo DigiLine maka dilakukan pengurangan saldo
         if($request->wallet == "DigiLine"){
             $user->saldo = $user->saldo - $transaksi->jumlah_harga;
             $user->update();
@@ -96,7 +96,6 @@ class PulsaController extends Controller
     }
 
     public function batal($id){
-        $transaksi = transaksi::where('id',$id)->first();
         transaksi::where('id',$id)->delete();
         return redirect('/dashboard')->with('success','Pembelian pulsa dibatalkan');
     }

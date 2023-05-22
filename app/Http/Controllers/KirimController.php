@@ -9,8 +9,6 @@ use App\Models\wallet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class KirimController extends Controller
 {
@@ -30,13 +28,15 @@ class KirimController extends Controller
         $jenis = 'KIRIM SALDO';
         $keterangan = 'Kirim Saldo'.' '.$wallet->name;
         $tanggal = Carbon::now();
+
+        // validasi no tujuan
         $request->validate([
             'no_tujuan' => 'required|min:12'
         ],[
             'no_tujuan.required' => 'Nomor Tujuan Harus Diisi',
             'no_tujuan.min' => 'Nomor Tujuan harus terdiri dari minimal 12 Karakter'
         ]);
-
+        // validasi kondisi jika transfer ke sesama user DigiLine
         if($wallet->name == "DigiLine" && !$penerima){
             return redirect('kirim/' . $wallet->id)->withErrors('Nomor Tujuan tidak ditemukan!');
         }
@@ -57,6 +57,7 @@ class KirimController extends Controller
             $transaksi->keterangan = $keterangan;
             $transaksi->save();
         }
+        // memasukkan data transaksi jika transfer antar wallet lain dilakukan
         else{
             $transaksi = new transaksi();
             $transaksi->user_id = Auth::user()->id;
@@ -94,6 +95,7 @@ class KirimController extends Controller
             $transaksi->jumlah_harga = $request->jumlah + $admin;
             $transaksi->update();
         }
+        // menggunakan library faker name untuk transfer ke wallet lain selain DigiLine yang terdaftar sebagai user
         else{
             $transaksi->nama_penerima = fake()->name();
             $transaksi->harga = $request->jumlah;
@@ -117,9 +119,11 @@ class KirimController extends Controller
         $user = Auth::user();
         $penerima = User::where('no_telp', $transaksi->no_tujuan)->first();
         
+        // kondisi jika pembayaran dilakukan dengan saldo DigiLine tapi saldo tidak mencukupi
         if($request->wallet == "DigiLine" && $transaksi->jumlah_harga > $user->saldo ){
             return redirect(url('kirim/rinciantrf/'.$transaksi->id))->withErrors('Saldo kamu tidak cukup!');
         }
+        // memasukkan data ke transaksi detail jika transfer ke DigiLine
         if($transaksi->wallet_tujuan == "DigiLine"){
             $transaksi_detail = new transaksiDetail();
             $transaksi_detail->transaksi_id = $transaksi->id;
@@ -138,6 +142,7 @@ class KirimController extends Controller
             $penerima->saldo += $transaksi->harga;
             $penerima->save();
         }
+        // memasukkan data ke transaksi detail jika transfer antar wallet lain terjadi
         else{
             $transaksi_detail = new transaksiDetail();
             $transaksi_detail->transaksi_id = $transaksi->id;
@@ -153,6 +158,7 @@ class KirimController extends Controller
             $transaksi->status = 1;
             $transaksi->update();
         }
+        // mengubah saldo DigiLine jika pembayaran melalui saldo DigiLine
         if($request->wallet == "DigiLine"){
             $user->saldo = $user->saldo - $transaksi->jumlah_harga;
             $user->update();
@@ -165,7 +171,6 @@ class KirimController extends Controller
         return view('home/kirim/detail',compact('transaksi_detail'));
     }
     function batal($id){
-        $transaksi = transaksi::where('id',$id)->first();
         transaksi::where('id',$id)->delete();
         return redirect('/dashboard')->with('success','Kirim saldo dibatalkan');
     }

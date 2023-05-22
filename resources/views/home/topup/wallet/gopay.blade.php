@@ -13,7 +13,7 @@
                     <button type="button" class="btn btn-outline-info btn-fw" style="text-align: left">
                     <div class="row">
                       <div class="col align-self-center">
-                        <img src="/assets/img/images/gopay.png" width="50" height="50"> Gopay
+                        <img src="/images/gopay.png" width="50" height="50"> Gopay
                       </div>
                       <div class="col align-self-center" style="text-align: right">
                         <a href="/topup" style="text-decoration: none;">Ganti &#10093;</a>
