@@ -51,8 +51,8 @@
                         @endif type="button" class="btn btn-outline-primary btn-fw" style="text-align: left">
                         <div class="row">
                           <div class="col-sm-2">
-                            <img src="@if($transaksi->jenis == "KIRIM SALDO") {{ url('/assets/img/images/cash-multiple.svg') }}
-                             @elseif($transaksi->jenis == "BELI PULSA") {{ url('/assets/img/images/cellphone.svg') }} @endif" width="70" height="50"></div>
+                            <img src="@if($transaksi->jenis == "KIRIM SALDO") {{ url('/images/cash-multiple.svg') }}
+                             @elseif($transaksi->jenis == "BELI PULSA") {{ url('/images/cellphone.svg') }} @endif" width="70" height="50"></div>
                               <?php 
                               $timestamp = (strtotime($transaksi->tanggal));
                               $date = date('d-m-Y', $timestamp);

@@ -27,9 +27,12 @@ class HomeController extends Controller
         $userId = Auth::id();
         $transaksi_details = TransaksiDetail::whereHas('transaksi', function ($query) use ($userId) {
             $query->where('user_id', $userId);
-        })->limit(5)->orderBy('tanggal', 'desc')->get();;
+        })->limit(5)->orderBy('tanggal', 'desc')->get();
+        $transaksi_detail_sum = TransaksiDetail::whereHas('transaksi', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })->get();
  
-        return view("home/dashboard",compact('transaksi_details'));
+        return view("home/dashboard",compact('transaksi_details','transaksi_detail_sum'));
     }
 
     function kirim(){

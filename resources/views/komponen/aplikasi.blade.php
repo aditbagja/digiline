@@ -76,27 +76,29 @@
         </div>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-top"> 
-        <ul class="navbar-nav">
-          <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-            <h1 class="welcome-text">Welcome, <span class="text-black fw-bold">{{Auth::user()->name}} !</span></h1>
-            <h3 class="welcome-sub-text">Saldo kamu, Rp. {{number_format(Auth::user()->saldo)}}</h3>           
-          </li>
-        </ul>
-        <ul class="navbar-nav ms-auto nav-item dropdown">
-          <li class="nav-item dropdown d-none d-lg-block user-dropdown">
-            <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i class="icon-user"></i></a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-              <div class="dropdown-header text-center">
-                <p class="mb-1 mt-3 font-weight-semibold">{{Auth::user()->name}}</p>
-                <p class="fw-light text-muted mb-0">{{Auth::user()->no_telp}}</p>
+          <ul class="navbar-nav">
+            <li class="nav-item font-weight-semibold d-lg-block ms-0">
+              <h1 class="welcome-text">Welcome, <span class="text-black fw-bold">{{Auth::user()->name}} !</span></h1>
+              <h3 class="welcome-sub-text">Saldo kamu, Rp. {{number_format(Auth::user()->saldo)}}</h3>           
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto nav-item dropdown">
+            <li class="nav-item dropdown d-lg-block user-dropdown">
+              <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false"><i class="icon-user"></i></a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                <div class="dropdown-header text-center">
+                  <p class="mb-1 mt-3 font-weight-semibold">{{Auth::user()->name}}</p>
+                  <p class="fw-light text-muted mb-0">{{Auth::user()->no_telp}}</p>
+                </div>
+                
+                <a class="dropdown-item" href='{{ route('profile.index') }}'><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> Profile</a>
+                <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> Bantuan</a>
+                <a class="dropdown-item" href="/auth/logout"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Logout</a>
               </div>
-              
-              <a class="dropdown-item" href='{{ route('profile.index') }}'><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> Profile</a>
-              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> Bantuan</a>
-              <a class="dropdown-item" href="/auth/logout"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Logout</a>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        
+        
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
           <span class="mdi mdi-menu"></span>
         </button>

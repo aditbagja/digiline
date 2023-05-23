@@ -46,7 +46,7 @@
             <div class="card-body">
               <h4 class="card-title">Activities</h4>
               <div class="embed-responsive embed-responsive-16by9">
-                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FJakarta&showTitle=0&showNav=0&showDate=1&showPrint=0&showTabs=1&showTz=1&showCalendars=0&hl=id&src=YWRpdGJhZ2phNDRAZ21haWwuY29t&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=Y2xhc3Nyb29tMTA3OTg5NDMwNzE5ODY4NjUxNDU5QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y2xhc3Nyb29tMTA4MDQxMzE4NTk2NzAzMzI3MzUyQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=ZW4uaW5kb25lc2lhbiNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=ZmFtaWx5MTEwNjEzNjk0ODUwNDQwNDg0NjBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=Y2xhc3Nyb29tMTEwOTcyNzg1NzkwMzA2OTM3MDk5QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y2xhc3Nyb29tMTAyNzY0OTQ1OTAzODE1MTU4Nzg3QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=dXBpLmVkdV9jbGFzc3Jvb21iMDEwM2QyN0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23039BE5&color=%2333B679&color=%23202124&color=%230047a8&color=%230B8043&color=%23795548&color=%23c26401&color=%23202124&color=%23007b83" style="border-width:0" width="465" height="400" frameborder="0" scrolling="no"></iframe>
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FJakarta&showTitle=0&showNav=0&showDate=1&showPrint=0&showTabs=1&showTz=1&showCalendars=0&hl=id&src=YWRpdGJhZ2phNDRAZ21haWwuY29t&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=Y2xhc3Nyb29tMTA3OTg5NDMwNzE5ODY4NjUxNDU5QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y2xhc3Nyb29tMTA4MDQxMzE4NTk2NzAzMzI3MzUyQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=ZW4uaW5kb25lc2lhbiNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=ZmFtaWx5MTEwNjEzNjk0ODUwNDQwNDg0NjBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=Y2xhc3Nyb29tMTEwOTcyNzg1NzkwMzA2OTM3MDk5QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y2xhc3Nyb29tMTAyNzY0OTQ1OTAzODE1MTU4Nzg3QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=dXBpLmVkdV9jbGFzc3Jvb21iMDEwM2QyN0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23039BE5&color=%2333B679&color=%23202124&color=%230047a8&color=%230B8043&color=%23795548&color=%23c26401&color=%23202124&color=%23007b83" class="calendar"></iframe>
               </div>
             </div>
           </div>
@@ -58,12 +58,11 @@
             <div class="card-body">
               <div class="d-sm-flex justify-content-between align-items-start">
                 <div>
-                  <h4 class="card-title card-title-dash">Aktivitas Transaksimu</h4>
-                 <p class="card-subtitle card-subtitle-dash">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                  <h4 class="card-title">Aktivitas Transaksimu</h4>
                 </div>
               </div>
               <div class="d-sm-flex align-items-center mt-1 justify-content-between">
-                <div class="d-sm-flex align-items-center mt-4 justify-content-between"><h2 class="me-2 fw-bold">Rp.362.531</h2><h4 class="me-2">Rupiah</h4><h4 class="text-success">(+1.37%)</h4></div>
+                <div class="d-sm-flex align-items-center mt-4 justify-content-between"><h2 class="me-2 fw-bold">Rp. {{ number_format($transaksi_detail_sum->sum('jumlah_harga')) }}</h2><h4 class="me-2">Rupiah</h4></div>
                 <div class="me-3"><div id="marketing-overview-legend"></div></div>
               </div>
               <div class="chartjs-bar-wrapper mt-3">
